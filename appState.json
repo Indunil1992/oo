@@ -1,0 +1,144 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "2d82d664-8cb8-44e4-92ad-e6aa9fca8064": {
+        "id": "2d82d664-8cb8-44e4-92ad-e6aa9fca8064",
+        "parent": null,
+        "name": "oo",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "4c89e666-f5a7-430f-9070-dd956fba8887",
+          "c9eb987c-a2fe-4a05-bb39-8ddc95077984"
+        ],
+        "isRemovable": false,
+        "filePath": "oo"
+      },
+      "4c89e666-f5a7-430f-9070-dd956fba8887": {
+        "id": "4c89e666-f5a7-430f-9070-dd956fba8887",
+        "parent": "2d82d664-8cb8-44e4-92ad-e6aa9fca8064",
+        "name": "function.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "oo/function.js",
+        "code": "let SL_GCP = require('slappforge-sdk-gcp');\nlet sqlConnMgr = require('./SqlConnMgr');\nconst sql = new SL_GCP.SQL(sqlConnMgr);\n\nexports.handler = function (request, response) {\n    // You must always end/destroy the DB connection after it's used.\n    sql.beginTransaction({\n        instanceIdentifier: 'instance6'\n    }, function (error, connection) {\n        if (error) {\n            throw error;\n        }\n    });\nconnection.end();\n    response.send({ \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8",
+          "timeout": 60,
+          "memory": 128,
+          "triggerType": 0,
+          "handler": "handler"
+        },
+        "triggers": [
+          {
+            "resourceName": "http-trigger",
+            "config": {}
+          }
+        ]
+      },
+      "34637586-91b3-4beb-bac1-4f1c511f6446": {
+        "id": "34637586-91b3-4beb-bac1-4f1c511f6446",
+        "parent": null,
+        "name": "index.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": false,
+        "filePath": "index.js",
+        "code": "// This file is used to register all your cloud functions in GCP.\n// DO NOT EDIT/DELETE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING.\n\nexports.oofunction = require(\"./oo/function.js\").handler;"
+      },
+      "ebe453df-7545-47bd-9689-50aa45f4b776": {
+        "id": "ebe453df-7545-47bd-9689-50aa45f4b776",
+        "parent": null,
+        "name": "main.py",
+        "type": "PYTHON_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": false,
+        "filePath": "main.py",
+        "code": "# This file is used to register all your cloud functions in GCP.\n# DO NOT EDIT/DELETE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING.\n\n"
+      },
+      "c9eb987c-a2fe-4a05-bb39-8ddc95077984": {
+        "id": "c9eb987c-a2fe-4a05-bb39-8ddc95077984",
+        "parent": "2d82d664-8cb8-44e4-92ad-e6aa9fca8064",
+        "name": "SqlConnMgr.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "oo/SqlConnMgr.js",
+        "code": "module.exports = function() {\n    this.dbConnections = [];\n\n    this.dbConnections[\"instance6\"] = {\n        host: \"35.227.96.135\",\n        port: \"3306\",\n        user: \"root\",\n        password: process.env.Password_sqlinstance6,\n        database: \"information_schema\"\n    };\n};"
+      }
+    },
+    "rootNode": "2d82d664-8cb8-44e4-92ad-e6aa9fca8064",
+    "openFiles": [
+      "4c89e666-f5a7-430f-9070-dd956fba8887"
+    ],
+    "currentFileId": "4c89e666-f5a7-430f-9070-dd956fba8887",
+    "resources": {
+      "http-trigger": {
+        "name": "http-trigger",
+        "type": "http-trigger",
+        "config": {}
+      },
+      "sqlinstance6": {
+        "name": "sqlinstance6",
+        "type": "SQL",
+        "config": {
+          "mode": 1,
+          "instance": {
+            "name": "instance6",
+            "host": "35.227.96.135",
+            "port": 3306,
+            "user": "root",
+            "password": "sachithra",
+            "database": "information_schema"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "4c89e666-f5a7-430f-9070-dd956fba8887",
+        "varKey": "Password_sqlinstance6",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": true
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "slappforge-sdk-gcp": {
+          "name": "slappforge-sdk-gcp",
+          "language": "javascript",
+          "version": "0.0.1",
+          "dev": false,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "oo",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east1",
+    "platform": "GCP",
+    "platformRegions": {},
+    "lastSave": 1568721850004
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "oo",
+      "url": "https://github.com/Indunil1992/oo"
+    }
+  }
+}
